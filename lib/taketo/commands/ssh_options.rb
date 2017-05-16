@@ -25,8 +25,11 @@ module Taketo
       def identity_file
         %Q[-i #{shellescape @server.identity_file}] if @server.identity_file
       end
-    end
 
+      def other_options
+        @server.other_options if @server.other_options
+      end
+    end
   end
 end
 
