@@ -199,5 +199,5 @@ Taketo is especially useful in conjunction with [tmuxall](https://github.com/v-y
 To install from local dir:
 -----
 ```sh
-rm -f *.gem && gem build taketo.gemspec && gem uninstall taketo && gem install ./taketo-*.gem &&  rvm wrapper ruby-2.3.1 --no-prefix taketo
+rm -f *.gem && gem build taketo.gemspec && gem uninstall taketo && gem install ./taketo-*.gem &&  rvm wrapper ruby-2.4.1 --no-prefix taketo
 ```
