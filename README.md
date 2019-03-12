@@ -39,6 +39,14 @@ However, I recommend doing a few things for better user experience:
 3. In case you use ZSH – install [taketo ZSH completion](https://raw.github.com/v-yarotsky/taketo/master/scripts/zsh/completion/_taketo).
    For [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh) you can put it in ~/.oh-my-zsh/plugins/taketo/_taketo
 
+4. To install from local dir with RVM wrapper:
+-----
+```sh
+  rm -f *.gem && gem build taketo.gemspec && gem uninstall taketo && gem install ./taketo-*.gem && rvm wrapper ruby-2.4.1 --no-prefix taketo
+  # or just
+  rake localinstall
+```
+
 Usage:
 ------
 
@@ -194,10 +202,3 @@ Tips:
 Taketo is especially useful in conjunction with [tmuxall](https://github.com/v-yarotsky/tmuxall) gem:
 
     $ taketo my_project:frontends --list | sed 's/^/taketo /' | tmuxall -n MY_PROJECT_FRONTENDS
-
-
-To install from local dir:
------
-```sh
-rm -f *.gem && gem build taketo.gemspec && gem uninstall taketo && gem install ./taketo-*.gem &&  rvm wrapper ruby-2.4.1 --no-prefix taketo
-```

@@ -4,6 +4,7 @@ module Taketo
 end
 
 require 'taketo/support'
+require 'taketo/colorize_string_monkeypatch'
 require 'taketo/dsl'
 require 'taketo/commands'
 require 'taketo/config_traverser'
