@@ -1,6 +1,5 @@
 require 'taketo/config_visitor'
 require 'taketo/printer'
-require 'pry'
 
 module Taketo
   class GroupListVisitor < SimpleCollector(Constructs::Server)

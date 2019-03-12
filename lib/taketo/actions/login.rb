@@ -9,13 +9,17 @@ module Taketo
       def run
         servers = ServerResolver.new(config, destination_path).resolve
         if servers.is_a?(Array) && options[:command]
-          servers.map do |server|
-            Thread.new do
-              run_cmd(server)
-            end
-          end.each(&:join)
+          if options[:parallel]
+            servers.map do |server|
+              Thread.new do
+                run_cmd(server)
+              end
+            end.each(&:join)
+          else
+            servers.each(&method(:run_cmd))
+          end
         else
-          run_cmd(servers)
+          run_cmd(servers.is_a?(Array) ? servers.first : servers)
         end
       end
 

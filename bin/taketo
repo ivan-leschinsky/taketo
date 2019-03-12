@@ -24,6 +24,8 @@ def parse_options
     opts.version = ::Taketo::VERSION
 
     opts.separator ""
+    opts.separator "destination can be multiple servers separated by comma"
+    opts.separator ""
     opts.separator "Common options:"
 
     opts.on("-f CONFIG", "--config", "Use custom config file (default: #{DEFAULT_CONFIG_FILE})") { |v| options[:config] = v }
@@ -33,6 +35,7 @@ def parse_options
     opts.on("-v", "--view", "Show config contents and exit")                                     { |v| options[:action] = :view; options[:view] = true }
     opts.on("--generate-ssh-config", "Generate SSH config from taketo config")                   { |v| options[:action] = :generate_ssh_config }
     opts.on("--list", "List servers in given group")                                             { |v| options[:action] = :list; options[:list] = true }
+    opts.on("--parallel", "When muptiple servers passed, command will be runned in parallel")    { |v| options[:parallel] = true;  }
 
     opts.separator "Special options:"
 
