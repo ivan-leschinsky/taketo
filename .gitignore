@@ -13,4 +13,4 @@ coverage/
 Gemfile.lock
 .ruby-version
 .ruby-gemset
-.gem
+*.gem

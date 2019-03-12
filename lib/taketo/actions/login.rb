@@ -7,13 +7,25 @@ module Taketo
 
     class Login < BaseAction
       def run
-        server = ServerResolver.new(config, destination_path).resolve
+        servers = ServerResolver.new(config, destination_path).resolve
+        if servers.is_a?(Array) && options[:command]
+          servers.map do |server|
+            Thread.new do
+              run_cmd(server)
+            end
+          end.each(&:join)
+        else
+          run_cmd(servers)
+        end
+      end
+
+      private
+
+      def run_cmd(server)
         server_command = remote_command(server)
         command_to_execute = Commands[server.ssh_command].new(server).render(server_command.render(server, options))
         execute(command_to_execute)
       end
-
-      private
 
       def remote_command(server)
         command = options[:command]
